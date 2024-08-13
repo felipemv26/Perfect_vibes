@@ -20,7 +20,7 @@ session_start();  // Iniciar sesión
                 <a href="/project-root/public/index.php" class="btn-inicio">Inicio</a>
                 <a href="/project-root/public/nosotros.php" class="btn-nosotros">Nosotros</a>
                 <a href="/project-root/public/productos.php" class="btn-productos">Productos</a>
-                <a href="/project-root/public/contactos.php" class="btn-contactos">Contacto</a>
+                <a href="/project-root/vistas/contacto/contacto.php" class="btn-contactos">Contacto</a>
                 <a href="/project-root/public/servicios.php" class="btn-servicios">Servicios</a>
                 <?php if (isset($_SESSION['usuario_nombre'])): ?>
                     <span class="navbar-text">
