@@ -1,251 +1,152 @@
+/* Definir las fuentes globales */
+:root {
+    --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --heading-font: "Raleway", sans-serif;
+    --nav-font: "Poppins", sans-serif;
+}
+
+/* Estilo para la barra de navegación */
+/* styles.css */
+header {
+    position: fixed; /* Mantiene la barra en la parte superior siempre */
+    top: 0; /* Ubicación en la parte superior */
+    left: 0; /* Sin margen izquierdo */
+    width: 100%; /* Ancho completo */
+    z-index: 1000; /* Asegura que la barra esté por encima de otros elementos */
+    background-color: white; /* Color de fondo para la barra de navegación */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle visibilidad */
+}
+
+/* Espaciado adicional para el contenido de la página */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #fafafa;
-}
-.logo {
-    width: 150px; 
-    margin-right: -25px;
-    margin-left: 20px;
-    margin-top: -30px;
-    display: left;
-    float: left;
-}
-.titulo {
-        font-family: Georgia, serif;
-        font-size: 50px; 
-        color: #333; 
-        text-align: center;         
-        
-}
-.titu {
-    margin-right: 120px;
-    margin-top: 30px;
-}
-.menu {
-    margin-top: -10px;
-    
-}
-.btn-inicio,
-.btn-productos,
-.btn-nosotros,
-.btn-contactos,
-.btn-servicios {
-    color: beige; 
-    text-decoration: none;
-    
-    margin-bottom:10px;
-    background-color: rgb(3, 3, 3);
-    border-radius: 20px; 
-    padding: 10px 20px; 
-    display: inline-block; 
-    transition: transform 0.3s, background-color 0.3s, color 0.3s;
-}
-.btn-inicio:hover,
-.btn-productos:hover,
-.btn-nosotros:hover,
-.btn-contactos:hover,
-.btn-servicios:hover {
-    background-color: #f5f5dc;
-    color: rgb(0, 0, 0); 
-    transform: scale(1.05);
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 10px; 
-    
-    
-}
-.promo {
-    width: 80%;
-    display: block; 
-    margin: 0 auto;
-    transition: transform 0.3s ease;
-}
-.promo:hover {
-    transform: scale(1.1);
-}
-.overlay {
-    position: absolute;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: rgba(0, 0, 0, 0.5); 
-    padding: 10px;
-    color: white;
-    opacity: 0; 
-    transition: opacity 0.3s ease; 
-}
-
-.promo:hover .overlay {
-    opacity: 1; 
-
-}
-.bienvenidos {
-    text-align: center; 
-    margin-top: 50px; 
-}
-
-.bien {
-    font-family: 'Garamond Bold', serif; 
-    color: #333; 
-    font-size: 70px; 
-    margin-top: 100px;
-}
-
-.bi {
-    font-family: 'Swiff Regular', serif; 
-    color: #666; 
-    font-size: 30px; 
-    margin-top: 10px; 
-    margin-left: auto; 
-    margin-right: auto; 
-    max-width: 800px;
-}
-.btn-reservar {
-    display: block;
-    width: 200px; 
-    margin: 0 auto; 
-    text-align: center; 
-    background-color: #030303; 
-    color: #f5f5dc; 
-    text-decoration: none; 
-    padding: 10px 20px; 
-    border-radius: 20px; 
-    transition: transform 0.3s, background-color 0.3s, color 0.3s; 
-}
-
-.btn-reservar:hover {
-    background-color: #fdc984; 
-    color: #000000; 
-    transform: scale(1.05); 
-}
-footer {
-    background-color: beige;
-    padding: 20px;
-    text-align: center;
-}
-
-.footer-content {
-    color: black;
+    font-family: var(--default-font);
 }
 
 
 
-/*CONTACTO*/
-.formulario {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top:auto;
-    margin-left: -80px;
+/* Ajustes del logo */
+.navbar-brand img {
+    max-width: 120px; /* Tamaño máximo ajustado */
 }
-.contacto {
-    text-align: center;
-    color: #333;
+
+/* Aplicar la fuente Poppins a la barra de navegación */
+.navbar-nav .nav-link {
+    font-family: var(--nav-font);
+    font-size: 1.05rem; /* Tamaño de fuente ligeramente aumentado */
+    font-weight: 500; /* Ajuste del peso de la fuente */
+    padding: 0 15px;  /* Ajuste del padding */
+    color: #000; /* Color de texto por defecto */
+    margin-right: 20px; /* Agregar espacio entre los elementos del menú */
 }
-label {
-    font-weight: bold;
-    color: #555;
+
+/* Estilo para el enlace activo en la barra de navegación */
+.navbar-nav .nav-link.active {
+    color: #E29578; /* Color para la opción activa */
 }
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
+
+/* Cambiar color al pasar el ratón */
+.navbar-nav .nav-link:hover {
+    color: #E29578; /* Color al hacer hover */
 }
-textarea {
-    height: 150px;
+
+/* Aplicar la fuente de los encabezados */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
 }
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+
+/* Botones de sesión */
+.btn {
+    font-size: 1rem; /* Tamaño moderado */
+    padding: 8px 16px; /* Ajuste moderado del padding */
 }
-input[type="submit"]:hover {
-    background-color: #45a049;
+
+/* Ajustes del botón de REGISTRAR */
+.btn-primary {
+    background-color: #E29578; /* Color del botón REGISTRAR */
+    border-color: #E29578;
 }
-.mapita {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    margin-left: 570px;
-    margin-bottom: -470px;
+
+/* Cambiar el color del botón REGISTRAR al hacer hover */
+.btn-primary:hover {
+    background-color: rgb(238, 90, 90); /* Color de hover del botón */
+    border-color: rgb(238, 90, 90);
 }
-.contenido {
+
+/* Ajustes para botones de sesión */
+.navbar-text,
+.btn-outline-danger,
+.btn-outline-primary {
+    margin-left: 15px;
+}
+
+/* Ajuste específico de la fuente en los botones */
+.btn-outline-primary, .btn-outline-danger, .btn-primary {
+    font-family: var(--nav-font);
+}
+
+/* Alineación de los iconos de carrito y usuario en el menú */
+.nav-link {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    gap: 5px; /* Espacio entre iconos y texto */
 }
-.nosotros-section {
-    padding: 40px 0;
-    background-color: #fff; /* White background */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
-    margin-top: 20px;
+
+/* Estilo personalizado para el botón de Iniciar Sesión */
+.custom-login-btn {
+    color: #ffffff; /* Color del texto */
+    background-color: #006d77; /* Color de fondo */
+    border-color: #006d77; /* Color del borde */
 }
-.nosotros-section h2 {
-    font-family: 'Garamond Bold', serif;
-    font-size: 2.5rem;
-    color: #343a40;
-    text-align: center;
-    margin-bottom: 30px;
+
+/* Color del botón cuando se pasa el mouse (hover) */
+.custom-login-btn:hover {
+    color: #ffffff; /* Color del texto en hover */
+    background-color: #005f6b; /* Color de fondo más oscuro en hover */
+    border-color: #005f6b; /* Color del borde en hover */
 }
-.nosotros-section h3 {
-    font-family: 'Garamond Bold', serif;
-    font-size: 2rem;
-    color: #343a40;
-    margin-top: 30px;
-}
-.nosotros-section p {
-    font-family: 'Garamond Bold', serif;
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #555;
-}
-.card {
-    transition: transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border: none;
-}
-.card:hover {
-    transform: scale(1.05); /* Hace zoom al pasar el cursor */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-.card-title {
-    font-weight: bold;
-    color: #343a40;
-}
-.btn-ver {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-.btn-ver:hover {
-    background-color: #0056b3; /* Cambio de color al pasar el cursor */
+.carousel-caption {
+    position: absolute; /* Posición absoluta para superponer */
+    top: 50%; /* Centrar verticalmente */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Alinear al centro */
+    color: white; /* Color del texto */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
 }
 .card-img-top {
-    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
+    height: 350px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.footer {
+    padding: 40px 0;
+    background-color: #000000 !important; /* Color de fondo oscuro */
+}
+
+.footer h5 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #E29578; /* Cambia el color del texto del título */
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+.footer .social-icons a {
+    margin-right: 10px;
+    font-size: 20px; /* Ajusta el tamaño del icono */
+}
+
+.footer .list-unstyled li {
+    margin: 10px 0;
+}
+
+.footer .input-group {
+    margin-top: 20px;
+}
+
+
+.footer .text-center {
+    margin-top: 20px;
 }
