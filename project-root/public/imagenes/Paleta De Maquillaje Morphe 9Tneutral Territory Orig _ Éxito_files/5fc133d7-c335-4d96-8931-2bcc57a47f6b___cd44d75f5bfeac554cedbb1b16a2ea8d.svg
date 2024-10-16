@@ -1,0 +1,14 @@
+<svg id="icon-fill-other-award_premio" data-name="icon-fill-other-award premio" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Trazado_16389" data-name="Trazado 16389" d="M2.5,0h25A2.5,2.5,0,0,1,30,2.5v25A2.5,2.5,0,0,1,27.5,30H2.5A2.5,2.5,0,0,1,0,27.5V2.5A2.5,2.5,0,0,1,2.5,0Z" transform="translate(507 2613)" fill="none" stroke="#3dcfea" stroke-width="2"/>
+    </clipPath>
+  </defs>
+  <g id="Enmascarar_grupo_25827" data-name="Enmascarar grupo 25827" transform="translate(-507 -2613)" clip-path="url(#clip-path)">
+    <g id="noun-medal-5456612" transform="translate(343.121 2571.311)">
+      <path id="Trazado_16384" data-name="Trazado 16384" d="M379.284,400.98l-2.019-.517-.9,1.872a.863.863,0,0,1-1.562-.009l-1.812-3.883a11.642,11.642,0,0,0,5.643-2.192l1.639,3.521a.865.865,0,0,1-.992,1.208Z" transform="translate(-192.932 -333.194)" fill="#fff"/>
+      <path id="Trazado_16385" data-name="Trazado 16385" d="M199.91,398.443l-1.812,3.883a.863.863,0,0,1-1.562.009l-.9-1.872-2.019.517a.865.865,0,0,1-.992-1.208l1.639-3.521a11.642,11.642,0,0,0,5.643,2.192Z" transform="translate(-22.367 -333.194)" fill="#fff"/>
+      <path id="Trazado_16386" data-name="Trazado 16386" d="M178.8,43.746a9.922,9.922,0,1,0,9.922,9.922A9.923,9.923,0,0,0,178.8,43.746Zm4.477,9.691-1.6,1.555.377,2.2a.887.887,0,0,1-1.287.935L178.8,57.085l-1.972,1.037a.887.887,0,0,1-1.287-.935l.377-2.2-1.6-1.555a.887.887,0,0,1,.492-1.513l2.2-.32.986-2a.887.887,0,0,1,1.59,0l.986,2,2.2.32a.887.887,0,0,1,.492,1.513Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

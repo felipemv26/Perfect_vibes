@@ -10,14 +10,17 @@ $exito = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $correo = $_POST['correo'];
+    $telefono = $_POST['telefono']; // Nuevo campo
     $contraseña = $_POST['contraseña'];
     $confirmar_contraseña = $_POST['confirmar_contraseña'];
 
     // Validar datos
-    if (empty($nombre) || empty($correo) || empty($contraseña) || empty($confirmar_contraseña)) {
+    if (empty($nombre) || empty($correo) || empty($telefono) || empty($contraseña) || empty($confirmar_contraseña)) {
         $error = "Todos los campos son obligatorios.";
     } elseif (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $error = "El correo electrónico no es válido.";
+    } elseif (!preg_match('/^[0-9\-\(\)\+ ]{6,20}$/', $telefono)) { // Validación básica del teléfono
+        $error = "El número de teléfono no es válido.";
     } elseif ($contraseña !== $confirmar_contraseña) {
         $error = "Las contraseñas no coinciden.";
     } else {
@@ -46,10 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Encriptar la contraseña
             $contraseña_hash = password_hash($contraseña, PASSWORD_BCRYPT);
 
-            // Insertar usuario en la base de datos
-            $sql = "INSERT INTO usuarios (nombre, correo, contraseña) VALUES (?, ?, ?)";
+            // Insertar usuario en la base de datos, incluyendo el teléfono
+            $sql = "INSERT INTO usuarios (nombre, correo, telefono, contraseña) VALUES (?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("sss", $nombre, $correo, $contraseña_hash);
+            $stmt->bind_param("ssss", $nombre, $correo, $telefono, $contraseña_hash);
 
             if ($stmt->execute()) {
                 $exito = "Registro exitoso. Puedes iniciar sesión.";
@@ -81,6 +84,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
                 <input type="email" class="form-control form-control-sm" id="correo" name="correo" required>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                <input type="text" class="form-control form-control-sm" id="telefono" name="telefono" required>
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Contraseña</label>

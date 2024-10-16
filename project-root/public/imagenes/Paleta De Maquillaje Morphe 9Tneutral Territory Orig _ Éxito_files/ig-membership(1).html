@@ -1,0 +1,21 @@
+
+<!-- saved from url=(0152)https://us.creativecdn.com/ig-membership?ntk=UAv4927JaY7egWo2Da6MsPDLStVZJ0EWJdoGajD-IP9XyY_xtF0QGIDv_qsM8NTCKuX7lepKHvHRs8qaa1gCINOtep-f3bQ-r4cb-tdQHC0 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<script type="module">
+    if (navigator.joinAdInterestGroup) {
+        const addIgScript = document.createElement('script');
+        let basePath = 'https://us.creativecdn.com/ig-membership';
+        let fencedFramesEnabled = window.FencedFrameConfig !== undefined || 'src' in document.createElement('fencedframe');
+        let runAdAuctionEnabled = navigator.runAdAuction !== undefined
+        let label = null;
+        if ('cookieDeprecationLabel' in navigator) {
+            label = await navigator.cookieDeprecationLabel.getValue();
+        }
+        let basEnabled = navigator.getInterestGroupAdAuctionData !== undefined;
+        let params = new URLSearchParams({ntk : 'UAv4927JaY7egWo2Da6MsPDLStVZJ0EWJdoGajD-IP9XyY_xtF0QGIDv_qsM8NTCKuX7lepKHvHRs8qaa1gCINOtep-f3bQ-r4cb-tdQHC0',lbl: label, ff: fencedFramesEnabled,checked: true,bas: basEnabled,ra        : runAdAuctionEnabled });
+        addIgScript.setAttribute('src', basePath + '?' + params.toString());
+        document.body.appendChild(addIgScript);
+    }
+</script>
+
+<script src="./ig-membership"></script></body></html>

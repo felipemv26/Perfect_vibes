@@ -1,0 +1,10 @@
+if(typeof FlixjQ!=='undefined'){if(FlixjQ('script[data-flix-price]').is(":visible")===true){document.querySelector('script[data-flix-price]').setAttribute('data-flix-price','');}}
+window.flixJsCallbacks.pageSpecific={price:function(){var
+bread=document.querySelector('meta[property*=price\\:amount]')||null,crumbs=null,price_from_loader=document.querySelector('script[data-flix-price]');try{if(!!price_from_loader.getAttribute("data-flix-price")){return price_from_loader.getAttribute("data-flix-price").trim()||false;}else if(!!bread&&bread.hasAttribute("content")){crumbs=bread.getAttribute("content").trim();return crumbs||false;}}catch(e){}},br:function(){var
+bread=document.querySelector('[property="product:brand"][content]')||null,crumbs=[];if(!!bread){crumbs=bread.getAttribute("content").trim();return crumbs;}}};;(function(){try{if(!!window.flixJsCallbacks&&!!window.flixJsCallbacks.flixCartClick){var
+ticks=5,a2cTest=null,query=null,skipTest=null,dist=2450,lang='f5',a2c=['.DefaultStyle_default__vCozi','div[class*=buyNow] button,div[class*=BuyButton] button','button.btn-add-cart','button.addToCart','button[id^=btnAddShoppin]','i.ico-AddShoppingCart'],skip=[],retailerSpecificTest=function(html_e){window.flixJsCallbacks.flixCartClick('skip',dist,lang);return false;};if(!String.prototype.trim){String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g,'');};}
+(function domTest(){A2CCHECK:for(var i=0,l=a2c.length;i<l;i++){a2cTest=document.querySelector(a2c[i]);if(a2cTest instanceof HTMLElement){query=a2c[i];break A2CCHECK;}}
+if(!a2cTest&&ticks){setTimeout(function(){ticks--;domTest();},5000);}
+else if(query){window.flixJsCallbacks.flixCartClick(query,dist,lang);}
+else if(!ticks&&skip.length){SKIPCHECK:for(var i=0,l=skip.length;i<l;i++){skipTest=document.querySelector(skip[i]);if(skipTest){retailerSpecificTest(skipTest);break SKIPCHECK;}};}
+else{window.flixJsCallbacks.flixCartClick('alert',dist,lang);}}());}}catch(ignore){}}());

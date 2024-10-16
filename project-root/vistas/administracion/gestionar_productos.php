@@ -1,6 +1,6 @@
 <?php
 $titulo = "Gestionar Productos";
-include __DIR__ . '/../../vistas/plantillas/header.php';  // Incluye header.php
+include __DIR__ . '/../../vistas/plantillas/header_admin.php';  // Incluye header.php
 
 // Conectar a la base de datos
 $servername = "localhost";

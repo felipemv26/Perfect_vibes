@@ -1,6 +1,6 @@
 <?php
 $titulo = "Gestionar Servicios";
-include __DIR__ . '/../../vistas/plantillas/header.php';
+include __DIR__ . '/../../vistas/plantillas/header_admin.php';
 ?>
 
 <h2>Gestionar Servicios</h2>

@@ -1,0 +1,1 @@
+[data-logo-addtocart=true] a::before { content: "Ir al Producto" !important; display: block !important; font-size: 20px !important; padding: 10px !important; } .ccs-logo-quantity { display: none !important; } [data-logo-addtocart=true] a { font-size: 0 !important; } .ccs-cc-inline { max-width: 80% !important; padding: 5% 5% !important; }

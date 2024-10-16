@@ -16,6 +16,7 @@ $id = $_POST['id'] ?? null;
 $nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
 $precio = $_POST['precio'];
+$whatsapp = $_POST['whatsapp']; // Capturar el enlace de WhatsApp
 
 // Manejar carga de archivo
 $imagen = $_FILES['imagen']['name'];
@@ -26,9 +27,9 @@ $imagen_path = $imagen_dir . basename($imagen);
 if ($accion == 'agregar') {
     // Insertar nuevo servicio
     if (move_uploaded_file($imagen_tmp, $imagen_path)) {
-        $sql = "INSERT INTO servicios (nombre, descripcion, precio, imagen) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO servicios (nombre, descripcion, precio, imagen, whatsapp) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssis", $nombre, $descripcion, $precio, $imagen);
+        $stmt->bind_param("ssiss", $nombre, $descripcion, $precio, $imagen, $whatsapp);
 
         if ($stmt->execute()) {
             echo "Servicio agregado exitosamente.";
@@ -44,14 +45,14 @@ if ($accion == 'agregar') {
     if (!empty($imagen)) {
         // Si se subió una nueva imagen, moverla
         move_uploaded_file($imagen_tmp, $imagen_path);
-        $sql = "UPDATE servicios SET nombre = ?, descripcion = ?, precio = ?, imagen = ? WHERE id = ?";
+        $sql = "UPDATE servicios SET nombre = ?, descripcion = ?, precio = ?, imagen = ?, whatsapp = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssisi", $nombre, $descripcion, $precio, $imagen, $id);
+        $stmt->bind_param("ssissi", $nombre, $descripcion, $precio, $imagen, $whatsapp, $id);
     } else {
         // Si no se subió una nueva imagen, no cambiarla
-        $sql = "UPDATE servicios SET nombre = ?, descripcion = ?, precio = ? WHERE id = ?";
+        $sql = "UPDATE servicios SET nombre = ?, descripcion = ?, precio = ?, whatsapp = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssii", $nombre, $descripcion, $precio, $id);
+        $stmt->bind_param("ssisi", $nombre, $descripcion, $precio, $whatsapp, $id);
     }
 
     if ($stmt->execute()) {

@@ -1,0 +1,13 @@
+window["ccs_cc_loadQueue"].push({
+"ldn": "ccs_cc_ld_369163be2d"
+,
+"styleSheets": [
+"https://cdn.cs.1worldsync.com/redirect/gp-subscriber-files/bc3c6be8/369163be2d/Style.Minified/20240613191726.css"]
+,
+"inlineScript": "\r\nccs_cc_loge_3edc79(\u0027f53fc6d0\u0027);\r\nfunction ccs_cc_gete_params_3edc79(id){switch(id){\r\ncase \u0027f53fc6d0\u0027: return { et: \u0027ProductHookLoad\u0027, serverParams: {\"ServerTime\":\"27\",\"ResultCode\":\"100\"} };break;\r\n}}\r\nfunction ccs_cc_loge_3edc79(id, clientParams){\r\nvar eventInfo = ccs_cc_gete_params_3edc79(id); if(!eventInfo) return;\r\nccs_cc_log.logEvent (eventInfo.et, \u0027SKey=bc3c6be8\u0026LCID=9226\u0026Market=CO\u0026Locale=ES-COL\u0026ZoneId=369163be2d\u0026ZoneVer=221\u0026SMfgName=MORPHE\u0026SMfgPn=undefined\u0026ProductId=102654594\u0027, eventInfo.serverParams, clientParams); }\r\n\r\n"
+,
+"inlineStyle": "\r\n"
+,
+"sites": [
+"cnetcontent.com","cnetcontentcast.com","1worldsync.com","cvasco--exitocol.myvtex.com","exito.com","exitocol.myvtex.com","sfj-5ba18bd--exito.preview.vtex.app","sfj-819c299--exito.preview.vtex.app","sfj-89d0f5f--exito.preview.vtex.app","tienda.exito.com","www.exito.com"]
+});

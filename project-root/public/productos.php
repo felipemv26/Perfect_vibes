@@ -92,15 +92,20 @@ if (isset($_POST['add_to_cart'])) {
                     $descripcion = htmlspecialchars($row["descripcion"]);
                     $precio = htmlspecialchars($row["precio"]);
 
+                    // Formatear el precio en pesos colombianos
+                    $precio_formateado = number_format($precio, 0, ',', '.');
+
                     // Card del producto
                     echo '<div class="col">';
-                    echo '  <div class="card">';
-                    echo '    <img src="../public/imagenes/' . $imagen . '" class="card-img-top img-fluid" alt="' . $nombre . '">';
-                    echo '    <div class="card-body text-center">';
+                    echo '  <div class="card h-100">'; // h-100 asegura que todas las tarjetas tengan la misma altura
+                    echo '    <div class="image-container">'; // Contenedor de la imagen
+                    echo '      <img src="../public/imagenes/' . $imagen . '" class="card-img-top" alt="' . $nombre . '">';
+                    echo '    </div>';
+                    echo '    <div class="card-body d-flex flex-column">'; // d-flex para alinear elementos de forma vertical
                     echo '      <h3 class="card-title">' . $nombre . '</h3>';
-                    echo '      <p class="card-text">' . $descripcion . '</p>';
-                    echo '      <p class="card-text">Precio: $' . $precio . '</p>';
-                    echo '      <button class="btn btn-primary" onclick="openModal(\'' . $id . '\', \'' . $nombre . '\', \'' . $imagen . '\', \'' . $descripcion . '\', \'' . $precio . '\')">Ver más</button>';
+                    echo '      <p class="card-text flex-grow-1">' . $descripcion . '</p>'; // flex-grow-1 para que el texto llene el espacio disponible
+                    echo '      <p class="card-text">Precio: $' . $precio_formateado . ' COP</p>'; // Mostrar precio formateado
+                    echo '      <button class="btn btn-primary mt-auto" onclick="openModal(\'' . $id . '\', \'' . $nombre . '\', \'' . $imagen . '\', \'' . $descripcion . '\', \'' . $precio . '\')">Ver más</button>'; // mt-auto para empujar el botón hacia abajo
                     echo '    </div>';
                     echo '  </div>';
                     echo '</div>';
@@ -140,7 +145,7 @@ if (isset($_POST['add_to_cart'])) {
         document.getElementById('modalTitle').innerText = nombre;
         document.getElementById('modalImage').src = '../public/imagenes/' + imagen;
         document.getElementById('modalDescription').innerText = descripcion;
-        document.getElementById('modalPrice').innerText = 'Precio: $' + precio;
+        document.getElementById('modalPrice').innerText = 'Precio: $' + number_format(precio, 0, ',', '.') + ' COP'; // Formato de precio en modal
 
         document.getElementById('addToCartButton').dataset.product = JSON.stringify({
             id: id,

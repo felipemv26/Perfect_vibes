@@ -1,5 +1,4 @@
 <?php
-
 $titulo = "Inicio de Sesión";
 include __DIR__ . '/../plantillas/header.php';
 
@@ -43,7 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['usuario_id'] = $row['id'];
                 $_SESSION['usuario_nombre'] = $row['nombre'];
                 $_SESSION['usuario_correo'] = $row['correo'];
-                header("Location:../../public/index.php"); // Redirigir a la página de bienvenida o panel
+                $_SESSION['role'] = $row['role'];  // Almacena el rol en la sesión
+
+                // Redirigir según el rol del usuario
+                if ($row['role'] == 'admin') {
+                    header("Location: ../administracion/admin_dashboard.php"); // Redirigir a la página de administrador
+                } else {
+                    header("Location: ../../public/index.php"); // Redirigir a la página de bienvenida o panel de cliente
+                }
                 exit();
             } else {
                 $error = "Contraseña incorrecta.";
@@ -75,6 +81,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="d-grid gap-2">
                 <button type="submit" class="btn btn-primary btn-sm">Iniciar Sesión</button>
+            </div>
+            <div class="text-center mt-3">
+                <a href="recuperar_contraseña.php" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
             </div>
         </form>
     </div>

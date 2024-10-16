@@ -1,0 +1,37 @@
+
+<!-- saved from url=(0156)https://us.creativecdn.com/topics-membership?ntk=rguBssy6J6K0YmGvPgqJ5s8-_5pXDvSm4Ano4wSgxRrbeVl5FkJOYMpRwoOaU90yDZJsjEBq-1T6lQlO1Jq_n1oT-f8-p714Xf9OrW3HQT8 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>
+<script>
+function ignoreAsyncResult(x) { }
+
+function readResponse(r) {
+    try {
+        if (r.ok) {
+            r.blob().then(ignoreAsyncResult, ignoreAsyncResult);
+        }
+    } catch (e) { }
+}
+
+function handleTopics(result) {
+    try {
+        if (Array.isArray(result)) {
+            var topicIds = result.map(function (topic) {
+                return topic.topic;
+            });
+            if (topicIds.length > 0 || Math.random() < 0.001) {
+                fetch('https://us.creativecdn.com/topics-membership?ntk=rguBssy6J6K0YmGvPgqJ5s8-_5pXDvSm4Ano4wSgxRrbeVl5FkJOYMpRwoOaU90yDZJsjEBq-1T6lQlO1Jq_n1oT-f8-p714Xf9OrW3HQT8&t=' + topicIds.join(','))
+                    .then(readResponse, ignoreAsyncResult);
+            }
+        }
+    } catch (e) { }
+}
+
+try {
+    if (document.browsingTopics) {
+        document.browsingTopics()
+            .then(handleTopics, ignoreAsyncResult);
+    }
+} catch (e) { }
+</script>
+
+</body></html>
