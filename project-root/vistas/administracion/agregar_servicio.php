@@ -1,6 +1,6 @@
 <?php
 $titulo = "Agregar Servicio";
-include __DIR__ . '/../../vistas/plantillas/header.php';
+include __DIR__ . '/../../vistas/plantillas/admin_header.php';
 ?>
 
 <div class="container mt-4">
