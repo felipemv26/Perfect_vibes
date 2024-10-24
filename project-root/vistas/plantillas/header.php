@@ -89,5 +89,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <!-- Bootstrap Bundle JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Mostrar la pantalla de carga
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('loading');
+        setTimeout(function() {
+            document.body.classList.remove('loading');
+        }, 3000); // Simula una carga de 3 segundos
+    });
+</script>
+
 </body>
 </html>

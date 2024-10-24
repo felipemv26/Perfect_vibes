@@ -8,6 +8,17 @@ include __DIR__ . '/../../vistas/plantillas/header_admin.php';  // Incluye el en
     <form action="procesar_producto.php" method="post" enctype="multipart/form-data">  <!-- Formulario para agregar un nuevo producto -->
         <input type="hidden" name="accion" value="agregar">  <!-- Campo oculto para indicar la acción que se va a realizar -->
         
+        <div class="mb-3">  <!-- Sección para seleccionar la clase del producto -->
+            <label for="clase" class="form-label">Clase del Producto</label>  <!-- Etiqueta del campo -->
+            <select class="form-control" id="clase" name="clase" required>  <!-- Campo de selección de clase -->
+                <option value="maquillaje">Maquillaje</option>
+                <option value="cuidado_facial">Cuidado Facial</option>
+                <option value="corporal">Corporal</option>
+                <option value="hombres">Productos Hombres</option>
+                <!-- Puedes agregar más opciones según las clases que necesites -->
+            </select>
+        </div>
+        
         <div class="mb-3">  <!-- Sección para el nombre del producto -->
             <label for="nombre" class="form-label">Nombre del Producto</label>  <!-- Etiqueta del campo -->
             <input type="text" class="form-control" id="nombre" name="nombre" required>  <!-- Campo de entrada para el nombre -->
@@ -27,6 +38,8 @@ include __DIR__ . '/../../vistas/plantillas/header_admin.php';  // Incluye el en
             <label for="imagen" class="form-label">Imagen</label>  <!-- Etiqueta del campo -->
             <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>  <!-- Campo para subir un archivo de imagen -->
         </div>
+
+        
 
         <button type="submit" class="btn btn-primary">Agregar Producto</button>  <!-- Botón para enviar el formulario -->
     </form>

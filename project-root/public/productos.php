@@ -1,26 +1,29 @@
 <?php
+// Título de la página que se mostrará en la cabecera
 $titulo = "Productos";
+// Inclusión del archivo de encabezado
 include __DIR__ . '/../vistas/plantillas/header.php';
 
+// Iniciar sesión solo si no hay una activa
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); // Iniciar sesión solo si no hay una activa
+    session_start();
 }
 
-// Conectar a la base de datos
+// Configuración de la base de datos
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "perfect_vides";
 
-// Crear conexión
+// Crear conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar la conexión
+// Verificar si la conexión fue exitosa
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consultar productos
+// Consultar productos basados en la búsqueda
 $searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 $sql = "SELECT * FROM productos WHERE nombre LIKE '%$searchQuery%'";
 $result = $conn->query($sql);
@@ -83,8 +86,32 @@ if (isset($_POST['add_to_cart'])) {
 <section>
     <div class="container mt-4">
         <div class="row row-cols-1 row-cols-md-3 g-4">
+            <style>
+                /* Ocultamos la descripción inicialmente */
+                .product-card .card-body .description {
+                    max-height: 0;  /* Ocultamos la descripción inicialmente */
+                    opacity: 0;  /* Hacemos la descripción invisible */
+                    overflow: hidden;  /* Ocultamos el desbordamiento */
+                    transition: max-height 1.3s ease-in-out, opacity 1.5s ease-in-out;  /* Transición más suave */
+                }
+
+                /* Al pasar el mouse, mostramos la descripción */
+                .product-card:hover .card-body .description {
+                    max-height: 200px;  /* Ajusta este valor para permitir más contenido (prueba con 200px o más) */
+                    opacity: 1;  /* Hacemos la descripción visible */
+                }
+
+                /* Efecto hover sobre la tarjeta */
+                .product-card:hover {
+                    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3); /* Efecto de sombra */
+                    transition: box-shadow 0.3s ease-in-out;
+                }
+            </style>
+
             <?php
+            // Verificar si hay productos disponibles
             if ($result->num_rows > 0) {
+                // Mostrar cada producto en una tarjeta
                 while ($row = $result->fetch_assoc()) {
                     $id = htmlspecialchars($row["id"]);
                     $nombre = htmlspecialchars($row["nombre"]);
@@ -92,61 +119,60 @@ if (isset($_POST['add_to_cart'])) {
                     $descripcion = htmlspecialchars($row["descripcion"]);
                     $precio = htmlspecialchars($row["precio"]);
 
-                    // Formatear el precio en pesos colombianos
-                    $precio_formateado = number_format($precio, 0, ',', '.');
-
                     // Card del producto
                     echo '<div class="col">';
-                    echo '  <div class="card h-100">'; // h-100 asegura que todas las tarjetas tengan la misma altura
-                    echo '    <div class="image-container">'; // Contenedor de la imagen
-                    echo '      <img src="../public/imagenes/' . $imagen . '" class="card-img-top" alt="' . $nombre . '">';
-                    echo '    </div>';
-                    echo '    <div class="card-body d-flex flex-column">'; // d-flex para alinear elementos de forma vertical
-                    echo '      <h3 class="card-title">' . $nombre . '</h3>';
-                    echo '      <p class="card-text flex-grow-1">' . $descripcion . '</p>'; // flex-grow-1 para que el texto llene el espacio disponible
-                    echo '      <p class="card-text">Precio: $' . $precio_formateado . ' COP</p>'; // Mostrar precio formateado
-                    echo '      <button class="btn btn-primary mt-auto" onclick="openModal(\'' . $id . '\', \'' . $nombre . '\', \'' . $imagen . '\', \'' . $descripcion . '\', \'' . $precio . '\')">Ver más</button>'; // mt-auto para empujar el botón hacia abajo
+                    echo '  <div class="card product-card h-100">';  // Clase "product-card" añadida para personalizar el hover
+                    echo '    <img src="../public/imagenes/' . $imagen . '" class="card-img-top img-fluid" alt="' . $nombre . '" style="object-fit: cover; height: 350px;">';  // Imagen ajustada
+                    echo '    <div class="card-body text-center d-flex flex-column">';
+                    echo '      <h3 class="card-title">' . $nombre . '</h3>';  // Mantener el título del mismo tamaño
+                    echo '      <p class="card-text description flex-grow-1">' . $descripcion . '</p>';  // Descripción oculta por defecto
+                    echo '      <p class="card-text mt-2">Precio: $' . number_format($precio, 0, ',', '.') . ' COP</p>';  // Precio siempre visible
+                    echo '      <button class="btn btn-primary mt-auto" onclick="openModal(\'' . $id . '\', \'' . $nombre . '\', \'' . $imagen . '\', \'' . $descripcion . '\', \'' . $precio . '\')">Ver más</button>';  // Botón en la parte inferior
                     echo '    </div>';
                     echo '  </div>';
                     echo '</div>';
                 }
             } else {
+                // Mensaje si no hay productos disponibles
                 echo "<p>No hay productos disponibles.</p>";
             }
-            $conn->close();
+            $conn->close(); // Cerrar la conexión a la base de datos
             ?>
         </div>
     </div>
 </section>
 
+
 <!-- Modal del Producto -->
 <div id="productModal" class="modal" style="display:none;">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h1 id="modalTitle"></h1>
-        <img id="modalImage" class="img-fluid mb-3" src="" alt="">
-        <p id="modalDescription"></p>
-        <p id="modalPrice"></p>
+        <span class="close" onclick="closeModal()">&times;</span> <!-- Botón para cerrar el modal -->
+        <h1 id="modalTitle"></h1> <!-- Título del modal -->
+        <img id="modalImage" class="img-fluid mb-3" src="" alt=""> <!-- Imagen del producto -->
+        <p id="modalDescription"></p> <!-- Descripción del producto -->
+        <p id="modalPrice"></p> <!-- Precio del producto -->
         
         <label for="productQuantity">Cantidad:</label>
         <select id="productQuantity" class="form-select" aria-label="Cantidad">
             <?php for ($i = 1; $i <= 10; $i++): ?>
-                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <option value="<?php echo $i; ?>"><?php echo $i; ?></option> <!-- Opciones de cantidad -->
             <?php endfor; ?>
         </select>
 
-        <button id="addToCartButton" class="btn btn-primary" onclick="addToCart()">Agregar al carrito</button>
+        <button id="addToCartButton" class="btn btn-primary" onclick="addToCart()">Agregar al carrito</button> <!-- Botón para agregar al carrito -->
     </div>
 </div>
 
 <!-- JavaScript para manejar el modal y la búsqueda -->
 <script>
     function openModal(id, nombre, imagen, descripcion, precio) {
+        // Asignar valores al modal
         document.getElementById('modalTitle').innerText = nombre;
         document.getElementById('modalImage').src = '../public/imagenes/' + imagen;
         document.getElementById('modalDescription').innerText = descripcion;
-        document.getElementById('modalPrice').innerText = 'Precio: $' + number_format(precio, 0, ',', '.') + ' COP'; // Formato de precio en modal
+        document.getElementById('modalPrice').innerText = 'Precio: $' + precio + ' COP';
 
+        // Guardar datos del producto en el botón de agregar al carrito
         document.getElementById('addToCartButton').dataset.product = JSON.stringify({
             id: id,
             nombre: nombre,
@@ -155,10 +181,12 @@ if (isset($_POST['add_to_cart'])) {
             precio: precio
         });
 
+        // Mostrar el modal
         document.getElementById('productModal').style.display = 'block';
     }
 
     function closeModal() {
+        // Ocultar el modal
         document.getElementById('productModal').style.display = 'none';
     }
 
@@ -184,10 +212,10 @@ if (isset($_POST['add_to_cart'])) {
         })
         .then(response => response.text())
         .then(data => {
-            alert(product.nombre + " ha sido agregado al carrito.");
-            closeModal();
+            alert(product.nombre + " ha sido agregado al carrito."); // Notificación de éxito
+            closeModal(); // Cerrar el modal
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error('Error:', error)); // Manejo de errores
     }
 
     function searchProducts(event) {

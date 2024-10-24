@@ -1,0 +1,39 @@
+/* Pantalla de carga */
+body.loading {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fbeff5;
+    position: relative;
+}
+
+/* Contenedor del icono de carga */
+.loading-container {
+    text-align: center;
+}
+
+.loading-icon {
+    font-size: 4rem;
+    color: #ff85a2;
+    margin-bottom: 20px;
+    animation: spin 2s linear infinite;
+}
+
+.loading-text {
+    font-family: var(--nav-font);
+    font-size: 1.5rem;
+    color: #555;
+}
+
+/* Animación de giro */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ocultar el contenido principal mientras se carga */
+#main-content {
+    display: none;
+}
